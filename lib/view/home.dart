@@ -1,10 +1,9 @@
-import 'dart:ffi';
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 import 'package:traveling_app_ui/components/custom_icon.dart';
+
+import '../components/homepagecard.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -79,88 +78,7 @@ class HomeView extends StatelessWidget {
               ),
             ),
             const Gap(20),
-            ListView.builder(
-              itemCount: 3,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) => Container(
-                width: double.infinity,
-                margin: const EdgeInsets.symmetric(vertical: 7, horizontal: 7),
-                height: 500,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(40),
-                  image: const DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage('assets/images/padarIsland.jpg'),
-                  ),
-                ),
-                child: Stack(children: [
-                  PositionedDirectional(
-                    top: 10,
-                    start: 10,
-                    child: FittedBox(
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(40),
-                        child: BackdropFilter(
-                          filter: ImageFilter.blur(
-                            sigmaX: 5.0,
-                            sigmaY: 5.0,
-                          ),
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 20, horizontal: 20),
-                            decoration: BoxDecoration(
-                              color: Colors.black12.withOpacity(0.1),
-                            ),
-                            child: Row(
-                              children: [
-                                Text(
-                                  '\$60',
-                                  style: texttheme.headlineSmall!
-                                      .copyWith(color: Colors.white),
-                                ),
-                                const Gap(5),
-                                Text(
-                                  '/Person',
-                                  style: texttheme.headline6!.copyWith(
-                                      color: Colors.grey.shade300
-                                          .withOpacity(0.5)),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  PositionedDirectional(
-                    end: 10,
-                    top: 10,
-                    child: ClipRect(
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(
-                          sigmaX: 5.0,
-                          sigmaY: 5.0,
-                        ),
-                        child: CircleAvatar(
-                          radius: 35,
-                          backgroundColor: Colors.black12.withOpacity(0.1),
-                          child: IconButton(
-                            isSelected: true,
-                            onPressed: () {
-                              HapticFeedback.selectionClick();
-                            },
-                            icon: CustomIcons(
-                              iconName: 'favorite',
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ]),
-              ),
-            ),
+            HomePageCard(texttheme: texttheme),
             const Gap(100),
           ],
         ),
